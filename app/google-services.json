@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "326745521261",
+    "firebase_url": "https://fpulsedb.firebaseio.com",
+    "project_id": "fpulsedb",
+    "storage_bucket": "fpulsedb.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:326745521261:android:eb99ddddfccb9b74",
+        "android_client_info": {
+          "package_name": "com.example.fpulse"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "326745521261-ickmbeobtpem8jnlc8cjb4fhlt0nv5s2.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.fpulse",
+            "certificate_hash": "7347e34fcfc01699bd7bfc15b77994fc2099a9e1"
+          }
+        },
+        {
+          "client_id": "326745521261-79550crhti0m0madhc6r93rpmcs9gtbk.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAis-_ljSRD5YjZ2rftPeUALxTwoOxrnrY"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "326745521261-79550crhti0m0madhc6r93rpmcs9gtbk.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

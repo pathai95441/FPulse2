@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg2"
+    tools:context=".Add">
+
+    <ImageView
+        android:id="@+id/addfreind"
+        android:layout_width="275dp"
+        android:layout_height="97dp"
+        android:layout_marginTop="151dp"
+        android:layout_marginBottom="134dp"
+        android:src="@drawable/addfriend"
+        app:layout_constraintBottom_toTopOf="@+id/creates"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="MissingConstraints" />
+
+    <ImageView
+        android:id="@+id/creates"
+        android:layout_width="269dp"
+        android:layout_height="111dp"
+        android:layout_marginBottom="284dp"
+        android:src="@drawable/create"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/addfreind"
+        tools:ignore="MissingConstraints" />
+
+</android.support.constraint.ConstraintLayout>
