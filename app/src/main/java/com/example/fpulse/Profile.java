@@ -27,6 +27,7 @@ public class Profile extends AppCompatActivity {
    // private MapView mapView;
     private static final String Keymap = "AIzaSyAR2wn6_41CeUoJHACczqrXH35eTh-pOdE";
     String url = "http://api.iottweet.com/livejson.php?userid=003664&key=l81scsm8i2b6";
+    ////5656565656565
     private ScheduledExecutorService scheduleTaskExecutor;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
