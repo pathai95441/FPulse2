@@ -1,8 +1,11 @@
 package com.example.fpulse;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -24,6 +27,7 @@ import java.util.concurrent.TimeUnit;
 
 public class Profile extends AppCompatActivity {
     TextView pulsetxt;
+    Button link;
    // private MapView mapView;
     private static final String Keymap = "AIzaSyAR2wn6_41CeUoJHACczqrXH35eTh-pOdE";
     String url = "http://api.iottweet.com/livejson.php?userid=003664&key=l81scsm8i2b6";
@@ -33,7 +37,15 @@ public class Profile extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
+        link = (Button) findViewById(R.id.button2);
 
+        link.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent homeIntent = new Intent(Profile.this,MapsActivity.class);
+                startActivity(homeIntent);
+            }
+        });
         //Bundle mapviewbundle = null;
        // if(savedInstanceState != null){
            // mapviewbundle =savedInstanceState.getBundle(Keymap);
