@@ -22,10 +22,12 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.auth.api.Auth;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
@@ -46,6 +48,8 @@ public class Createprofile extends AppCompatActivity {
     FirebaseStorage storage;
     StorageReference storageReference;
     FirebaseDatabase database;
+    Auth auth;
+
 
 
     @Override
@@ -108,9 +112,11 @@ public class Createprofile extends AppCompatActivity {
                             // Got the download URL for "YourFolderName/YourFile.pdf"
                             // Add it to your database
                             Log.d("mytag",uri.toString());
-                            DatabaseReference myRef = database.getReference("Users");
-                            myRef.child(name.getText().toString()).child("serial").setValue(serial.getText().toString());
-                            myRef.child(name.getText().toString()).child("picUrl").setValue(uri.toString());
+                            DatabaseReference myRef = database.getReference("Users").child(serial.getText().toString()).child(FirebaseAuth.getInstance().getCurrentUser().getUid());
+                            myRef.child("name").setValue(name.getText().toString());
+                            myRef.child("tags").setValue(serial.getText().toString());
+                            myRef.child("picUrl").setValue(uri.toString());
+                            myRef.child("pulseshow").setValue("0");
                         }
                     }).addOnFailureListener(new OnFailureListener() {
                         @Override

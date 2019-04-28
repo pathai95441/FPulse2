@@ -8,7 +8,7 @@
     tools:context=".Profile">
 
     <ImageView
-        android:id="@+id/imageView"
+        android:id="@+id/Imageprofile"
         android:layout_width="0dp"
         android:layout_height="190dp"
         android:layout_marginStart="23dp"
@@ -26,33 +26,60 @@
     <TextView
         android:id="@+id/pulsetxt"
         android:layout_width="0dp"
-        android:layout_height="191dp"
+        android:layout_height="77dp"
         android:layout_marginTop="48dp"
         android:layout_marginEnd="7dp"
-        android:layout_marginRight="7dp"
-        android:textSize="50dp"
+        android:layout_marginBottom="8dp"
 
+        android:textSize="50dp"
+        app:layout_constraintBottom_toTopOf="@+id/graph1"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/imageView"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintStart_toEndOf="@+id/Imageprofile"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
 
     <Button
         android:id="@+id/button2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
         android:layout_marginBottom="8dp"
-        android:text="Button"
+        android:text="Map"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.462"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView"
-        app:layout_constraintVertical_bias="0.934" />
+        app:layout_constraintTop_toBottomOf="@+id/logbutton3"
+        app:layout_constraintVertical_bias="0.333" />
+
+    <Button
+        android:id="@+id/logbutton3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="119dp"
+        android:text="Log"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.462"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/graphpulse"
+        app:layout_constraintVertical_bias="0.677" />
+
+    <com.jjoe64.graphview.GraphView
+        android:id="@+id/graphpulse"
+        android:layout_width="309dp"
+        android:layout_height="200dp"
+        android:layout_marginStart="51dp"
+        android:layout_marginTop="276dp"
+        android:layout_marginEnd="51dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 
 </android.support.constraint.ConstraintLayout>

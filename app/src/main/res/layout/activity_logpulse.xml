@@ -4,19 +4,18 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/bg5"
-    tools:context=".MainActivity">
+    tools:context=".logpulse">
 
-    <ImageView
-        android:id="@+id/logo_img"
-        android:layout_width="95dp"
-        android:layout_height="88dp"
-        android:layout_marginTop="76dp"
-        android:src="@drawable/logo"
+    <com.jjoe64.graphview.GraphView
+        android:id="@+id/graph1"
+        android:layout_width="0dp"
+        android:layout_height="383dp"
+        android:layout_marginStart="51dp"
+        android:layout_marginLeft="51dp"
+        android:layout_marginTop="49dp"
+        android:layout_marginEnd="51dp"
+        android:layout_marginRight="51dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="MissingConstraints" />
-
+        app:layout_constraintTop_toTopOf="parent" />
 </android.support.constraint.ConstraintLayout>

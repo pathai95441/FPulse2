@@ -28,6 +28,9 @@
         android:layout_toRightOf="@id/imgprof"
         android:textSize="30dp"
         android:text="TextView" />
+
+
+
 </RelativeLayout>
 
 </LinearLayout>
