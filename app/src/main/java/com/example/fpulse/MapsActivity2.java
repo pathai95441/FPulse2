@@ -18,17 +18,17 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 
-public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
+public class MapsActivity2 extends FragmentActivity implements OnMapReadyCallback {
 
     private GoogleMap mMap;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_maps);
+        setContentView(R.layout.activity_maps2);
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
-                .findFragmentById(R.id.map);
+                .findFragmentById(R.id.map2);
         mapFragment.getMapAsync(this);
     }
 
@@ -48,11 +48,11 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
         LocationManager locationManager = (LocationManager)
                 getSystemService(Context.LOCATION_SERVICE);
-        if (ContextCompat.checkSelfPermission(MapsActivity.this, Manifest.permission.WRITE_CALENDAR)
+        if (ContextCompat.checkSelfPermission(MapsActivity2.this, Manifest.permission.WRITE_CALENDAR)
                 != PackageManager.PERMISSION_GRANTED) {
             // Permission is not granted
         }
-         locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 1000, 5, locationListenerGPS);
+        locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 1000, 5, locationListenerGPS);
         mMap.setMyLocationEnabled(true);
         mMap.getUiSettings().setMyLocationButtonEnabled(true);
         Criteria criteria = new Criteria();
@@ -77,7 +77,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             double latitude = location.getLatitude();
             double longitude = location.getLongitude();
             String msg = "New Latitude: " + latitude + "New Longitude: " + longitude;
-            Toast.makeText(MapsActivity.this, msg, Toast.LENGTH_LONG).show();
+            Toast.makeText(MapsActivity2.this, msg, Toast.LENGTH_LONG).show();
             mMap.moveCamera(CameraUpdateFactory.newLatLng(new LatLng(latitude,longitude)));
         }
 

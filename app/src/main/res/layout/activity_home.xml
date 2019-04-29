@@ -34,15 +34,14 @@
 
     <ImageView
         android:id="@+id/profile"
-        android:layout_width="161dp"
-        android:layout_height="0dp"
+        android:layout_width="128dp"
+        android:layout_height="158dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="40dp"
         app:layout_constraintBottom_toTopOf="@+id/ListView"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.555"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/userbg" />
@@ -58,7 +57,7 @@
         android:textSize="20dp"
         app:layout_constraintBottom_toTopOf="@+id/ListView"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.076"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.435" />
@@ -66,8 +65,8 @@
     <TextView
         android:id="@+id/pulsesval"
         android:layout_width="102dp"
-        android:layout_height="57dp"
-        android:layout_marginStart="169dp"
+        android:layout_height="67dp"
+        android:layout_marginStart="8dp"
         android:layout_marginTop="36dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
@@ -76,7 +75,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/profile"
-        app:layout_constraintStart_toStartOf="@+id/profile"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.2" />
 

@@ -1,11 +1,15 @@
 package com.example.fpulse;
 
-import android.app.Activity;
+import android.app.Notification;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v4.app.NotificationCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -33,7 +37,6 @@ import com.jjoe64.graphview.GraphView;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
-import java.util.List;
 
 
 //import androidx.annotation.Nullable;
@@ -44,9 +47,12 @@ public class Home extends AppCompatActivity {
     ImageView myps;
     ImageView adds;
     TextView Tags;
+    TextView val;
     Button logout;
     GraphView graphView;
     ListView listView;
+    private final String CHANNEL_ID = "personal_notifications";
+    private final int NOTIFICATION_ID = 001;
     final String UID = FirebaseAuth.getInstance().getCurrentUser().getUid().toString();
     private DatabaseReference mDatabase,mDatabase2;
       //String[] NAMES ={"set","set","set","set","set","set","set","set"};
@@ -64,6 +70,9 @@ public class Home extends AppCompatActivity {
         listView = findViewById(R.id.ListView);
         logout = (Button) findViewById(R.id.logoutbtn);
         Tags = (TextView) findViewById(R.id.Tags) ;
+        val = (TextView) findViewById(R.id.pulsesval);
+        createNotificationChannel();
+
         getdatauser();
         mDatabase2 = FirebaseDatabase.getInstance().getReference("Users").child("kusrc");
         mDatabase2.addValueEventListener(new ValueEventListener() {
@@ -80,6 +89,13 @@ public class Home extends AppCompatActivity {
                         names.add(user.getName() );
                         images.add(user.getPicUrl());
                         pulsevals.add(user.getPulseshow());
+                        if(Integer.parseInt(user.getPulseshow())<60 && Integer.parseInt(user.getPulseshow())!=-1){
+                            showNotification1(user.getName());
+                            Log.d("gun","Alert low");
+
+                        }else if(Integer.parseInt(user.getPulseshow())>110 && Integer.parseInt(user.getPulseshow())!=-1){
+                            showNotification2(user.getName());
+                        }
                     }
 
 
@@ -170,7 +186,7 @@ public class Home extends AppCompatActivity {
                     .into(imageView);
             textView.setText(names.get(position));
             if(pulsevals.get(position).equals("-1")){
-                textView1.setText("Have not installed the device!!!!");
+                textView1.setText("ยังไม่ได้ติดตั้ง อุปกรณ์");
             }else{
             textView1.setText(pulsevals.get(position));
             }
@@ -203,6 +219,18 @@ public class Home extends AppCompatActivity {
                     startActivity(i);
                     Log.d("gun","ERROR");
                 }
+                if(user.getPulseshow().equals("-1")){
+                    val.setText("ยังไม่ได้ติดตั้ง อุปกรณ์");
+                }else{
+                    val.setText(user.getPulseshow());
+                }
+                if(Integer.parseInt(user.getPulseshow())<60 && Integer.parseInt(user.getPulseshow())!=-1){
+                    showNotification1(user.getName());
+                    Log.d("gun","Alert low");
+
+                }else if(Integer.parseInt(user.getPulseshow())>110 && Integer.parseInt(user.getPulseshow())!=-1){
+                    showNotification2(user.getName());
+                }
 //                }
             }
 
@@ -213,6 +241,47 @@ public class Home extends AppCompatActivity {
 
         });
     }
+    public void showNotification1(String name){
+
+        Notification notification = new NotificationCompat.Builder(this,CHANNEL_ID)
+                .setSmallIcon(R.drawable.logo)
+                .setContentTitle("อันตราย!!!!")
+                .setContentText("คุณ "+name+" มีช๊พจรเต้นต่ำกว่าปกติ!!!!")
+                .setAutoCancel(true)
+                .build();
+        NotificationManager notificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
+        notificationManager.notify(NOTIFICATION_ID, notification);
+
+    }
+
+    private void createNotificationChannel(){
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O){
+            CharSequence name = "Personal Notification";
+            String description = "Include all the personal notification";
+            int importance = NotificationManager.IMPORTANCE_DEFAULT;
+
+            NotificationChannel notificationChannel = new NotificationChannel(CHANNEL_ID,name,importance);
+
+            notificationChannel.setDescription(description);
+
+            NotificationManager notificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
+            notificationManager.createNotificationChannel(notificationChannel);
+
+        }
+    }
+    public void showNotification2(String name){
+
+        Notification notification = new NotificationCompat.Builder(this,CHANNEL_ID)
+                .setSmallIcon(R.drawable.logo)
+                .setContentTitle("อันตราย!!!!")
+                .setContentText("คุณ "+name+" มีช๊พจรเต้นสูงกว่าปกติ!!!!")
+                .setAutoCancel(true)
+                .build();
+        NotificationManager notificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
+        notificationManager.notify(NOTIFICATION_ID, notification);
+
+    }
+
 
     }
 

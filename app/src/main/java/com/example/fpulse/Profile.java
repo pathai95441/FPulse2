@@ -1,22 +1,14 @@
 package com.example.fpulse;
 
 import android.content.Intent;
+import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.StringRequest;
-import com.android.volley.toolbox.Volley;
-import com.github.mikephil.charting.charts.LineChart;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -24,19 +16,13 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.jjoe64.graphview.GraphView;
-import com.jjoe64.graphview.series.DataPoint;
 import com.jjoe64.graphview.series.LineGraphSeries;
 import com.squareup.picasso.Picasso;
+
+import java.util.concurrent.ScheduledExecutorService;
+
 //import com.google.android.gms.maps.MapView;
 //import com.google.android.gms.maps.OnMapReadyCallback;
-
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.util.concurrent.Executors;
-import java.util.concurrent.ScheduledExecutorService;
-import java.util.concurrent.TimeUnit;
 
 public class Profile extends AppCompatActivity {
     TextView pulsetxt;
@@ -164,8 +150,12 @@ public class Profile extends AppCompatActivity {
                             .load(user.getPicUrl())
 //                    .resize(50, 50)
 //                    .centerCrop()
-                            .into(imagepro);
-                  pulsetxt.setText(user.getPulseshow());
+                            .into(imagepro);if(user.getPulseshow().equals("-1")){
+                    pulsetxt.setText("ยังไม่ได้ติดตั้ง อุปกรณ์");
+                }else{
+                    pulsetxt.setText(user.getPulseshow());
+                }
+
 
 //                }
             }
