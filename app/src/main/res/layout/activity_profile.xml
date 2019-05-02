@@ -4,19 +4,19 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/bg4"
+    android:background="#FAF0E6"
     tools:context=".Profile">
 
-    <ImageView
+    <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/Imageprofile"
-        android:layout_width="0dp"
-        android:layout_height="190dp"
+        android:layout_width="154dp"
+        android:layout_height="148dp"
         android:layout_marginStart="23dp"
-        android:layout_marginLeft="23dp"
-        android:layout_marginTop="48dp"
+        android:layout_marginTop="28dp"
         android:layout_marginEnd="16dp"
-        android:layout_marginRight="16dp"
         android:src="@drawable/test"
+        app:civ_border_color="#ffffff"
+        app:civ_border_width="2dp"
 
         app:layout_constraintEnd_toStartOf="@+id/pulsetxt"
         app:layout_constraintStart_toStartOf="parent"
@@ -27,10 +27,9 @@
         android:id="@+id/pulsetxt"
         android:layout_width="0dp"
         android:layout_height="77dp"
-        android:layout_marginTop="48dp"
+        android:layout_marginTop="96dp"
         android:layout_marginEnd="7dp"
         android:layout_marginBottom="8dp"
-
         android:textSize="20dp"
         app:layout_constraintBottom_toTopOf="@+id/graph1"
         app:layout_constraintEnd_toEndOf="parent"

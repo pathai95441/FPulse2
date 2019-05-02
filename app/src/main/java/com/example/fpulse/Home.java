@@ -141,6 +141,7 @@ public class Home extends AppCompatActivity {
                     public void onComplete(@NonNull Task<Void> task) {
                         Intent homeIntent = new Intent(Home.this, MainActivity.class);
                         startActivity(homeIntent);
+                        finish();
                     }
                 }).addOnFailureListener(new OnFailureListener() {
                     @Override
@@ -184,11 +185,11 @@ public class Home extends AppCompatActivity {
 //                    .resize(50, 50)
 //                    .centerCrop()
                     .into(imageView);
-            textView.setText(names.get(position));
+            textView.setText("  "+names.get(position));
             if(pulsevals.get(position).equals("-1")){
-                textView1.setText("ยังไม่ได้ติดตั้ง อุปกรณ์");
+                textView1.setText("    ยังไม่ได้ติดตั้ง อุปกรณ์");
             }else{
-            textView1.setText(pulsevals.get(position));
+            textView1.setText("    "+pulsevals.get(position));
             }
 
             return row;

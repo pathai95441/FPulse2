@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/bg3"
+    android:background="#FAF0E6"
     tools:context=".Home">
 
     <ImageView
@@ -32,40 +32,44 @@
         app:layout_constraintTop_toBottomOf="@+id/profile"></ListView>
 
 
-    <ImageView
+    <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/profile"
-        android:layout_width="128dp"
-        android:layout_height="158dp"
+        app:civ_border_color="#ffffff"
+        app:civ_border_width="2dp"
+        android:layout_width="88dp"
+        android:layout_height="101dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="40dp"
         app:layout_constraintBottom_toTopOf="@+id/ListView"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.082"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/userbg" />
 
     <TextView
         android:id="@+id/Tags"
-        android:layout_width="108dp"
-        android:layout_height="99dp"
+        android:layout_width="187dp"
+        android:layout_height="65dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
+        android:textStyle="bold"
         android:textSize="20dp"
         app:layout_constraintBottom_toTopOf="@+id/ListView"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.435" />
+        app:layout_constraintHorizontal_bias="0.517"
+        app:layout_constraintStart_toEndOf="@+id/profile"
+        app:layout_constraintTop_toBottomOf="@+id/pulsesval"
+        app:layout_constraintVertical_bias="0.133" />
 
     <TextView
         android:id="@+id/pulsesval"
-        android:layout_width="102dp"
-        android:layout_height="67dp"
+        android:layout_width="180dp"
+        android:layout_height="70dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="36dp"
         android:layout_marginEnd="8dp"
@@ -73,10 +77,10 @@
         android:textSize="20dp"
         app:layout_constraintBottom_toTopOf="@+id/ListView"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="0.404"
         app:layout_constraintStart_toEndOf="@+id/profile"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.2" />
+        app:layout_constraintVertical_bias="0.0" />
 
     <Button
         android:id="@+id/logoutbtn"
