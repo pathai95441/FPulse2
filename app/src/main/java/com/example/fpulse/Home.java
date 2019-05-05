@@ -45,10 +45,10 @@ import java.util.ArrayList;
 
 public class Home extends AppCompatActivity {
     ImageView myps;
-    ImageView adds;
+
     TextView Tags;
     TextView val;
-    Button logout;
+    Button logout,editprofile;
     GraphView graphView;
     ListView listView;
     private final String CHANNEL_ID = "personal_notifications";
@@ -66,7 +66,7 @@ public class Home extends AppCompatActivity {
         setContentView(R.layout.activity_home);
         mDatabase = FirebaseDatabase.getInstance().getReference("Users");
         myps = (ImageView) findViewById(R.id.profile);
-        adds = (ImageView) findViewById(R.id.addimg);
+        editprofile = (Button) findViewById(R.id.editprofile) ;
         listView = findViewById(R.id.ListView);
         logout = (Button) findViewById(R.id.logoutbtn);
         Tags = (TextView) findViewById(R.id.Tags) ;
@@ -118,7 +118,7 @@ public class Home extends AppCompatActivity {
         });
 
 
-        adds.setOnClickListener(new View.OnClickListener() {
+        editprofile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent homeIntent = new Intent(Home.this, Createprofile.class);

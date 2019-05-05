@@ -38,9 +38,10 @@
 
     <Button
         android:id="@+id/button3"
-        android:layout_width="167dp"
-        android:layout_height="0dp"
+        android:layout_width="126dp"
+        android:layout_height="47dp"
         android:layout_marginBottom="259dp"
+        android:background="@drawable/custom_button"
         android:text="Sign Up"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

@@ -7,44 +7,33 @@
     android:background="#FAF0E6"
     tools:context=".Home">
 
-    <ImageView
-        android:id="@+id/addimg"
-        android:layout_width="137dp"
-        android:layout_height="100dp"
-        android:layout_marginBottom="33dp"
-        android:src="@drawable/edit_profile"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.109"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ListView"
-        tools:ignore="MissingConstraints" />
-
 
     <ListView
         android:id="@+id/ListView"
-        android:layout_width="0dp"
-        android:layout_height="284dp"
-        android:layout_marginBottom="68dp"
-        app:layout_constraintBottom_toTopOf="@+id/addimg"
+        android:layout_width="327dp"
+        android:layout_height="358dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="144dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/profile"></ListView>
+        app:layout_constraintHorizontal_bias="0.714"
+        app:layout_constraintStart_toStartOf="parent"></ListView>
 
 
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/profile"
-        app:civ_border_color="#ffffff"
-        app:civ_border_width="2dp"
         android:layout_width="88dp"
         android:layout_height="101dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="40dp"
+        app:civ_border_color="#ffffff"
+        app:civ_border_width="2dp"
         app:layout_constraintBottom_toTopOf="@+id/ListView"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.082"
+        app:layout_constraintHorizontal_bias="0.074"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/userbg" />
@@ -77,26 +66,31 @@
         android:textSize="20dp"
         app:layout_constraintBottom_toTopOf="@+id/ListView"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.404"
+        app:layout_constraintHorizontal_bias="0.478"
         app:layout_constraintStart_toEndOf="@+id/profile"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0" />
 
     <Button
         android:id="@+id/logoutbtn"
-        android:layout_width="157dp"
-        android:layout_height="96dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="68dp"
+        android:layout_width="100dp"
+        android:layout_height="50dp"
+        android:layout_marginEnd="48dp"
+        android:layout_marginBottom="44dp"
+        android:background="@drawable/custom_button"
         android:text="Logout"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.507"
-        app:layout_constraintStart_toEndOf="@+id/addimg"
+        app:layout_constraintEnd_toEndOf="parent" />
 
-        app:layout_constraintTop_toBottomOf="@+id/ListView"
-        app:layout_constraintVertical_bias="0.137" />
+    <Button
+        android:id="@+id/editprofile"
+        android:layout_width="100dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="48dp"
+        android:layout_marginBottom="44dp"
+        android:background="@drawable/custom_button"
+        android:text="EditProfile"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
 </android.support.constraint.ConstraintLayout>
