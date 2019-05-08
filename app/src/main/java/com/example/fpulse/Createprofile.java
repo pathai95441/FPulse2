@@ -104,11 +104,20 @@ public class Createprofile extends AppCompatActivity {
                             // Got the download URL for "YourFolderName/YourFile.pdf"
                             // Add it to your database
                             Log.d("mytag",uri.toString());
-                            DatabaseReference myRef = database.getReference("Users").child(serial.getText().toString()).child(FirebaseAuth.getInstance().getCurrentUser().getUid());
-                            myRef.child("name").setValue(name.getText().toString());
-                            myRef.child("tags").setValue(serial.getText().toString());
-                            myRef.child("picUrl").setValue(uri.toString());
-                            myRef.child("pulseshow").setValue("-1");
+                            if(serial.getText().toString().equals("kusrc")){
+                                DatabaseReference myRef = database.getReference("Users").child("kusrc").child(FirebaseAuth.getInstance().getCurrentUser().getUid());
+                                myRef.child("name").setValue(name.getText().toString());
+                                myRef.child("tags").setValue(serial.getText().toString());
+                                myRef.child("picUrl").setValue(uri.toString());
+                                myRef.child("pulseshow").setValue("-1");
+                            }else{
+                                DatabaseReference myRef = database.getReference("Gourp").child(serial.getText().toString()).child(FirebaseAuth.getInstance().getCurrentUser().getUid());
+                                myRef.child("name").setValue(name.getText().toString());
+                                myRef.child("tags").setValue(serial.getText().toString());
+                                myRef.child("picUrl").setValue(uri.toString());
+                                myRef.child("pulseshow").setValue("-1");
+                            }
+
                         }
                     }).addOnFailureListener(new OnFailureListener() {
                         @Override

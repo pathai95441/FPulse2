@@ -54,7 +54,7 @@ public class Home extends AppCompatActivity {
     private final String CHANNEL_ID = "personal_notifications";
     private final int NOTIFICATION_ID = 001;
     final String UID = FirebaseAuth.getInstance().getCurrentUser().getUid().toString();
-    private DatabaseReference mDatabase,mDatabase2;
+    private DatabaseReference mDatabase,mDatabase2,mDatabase3;
       //String[] NAMES ={"set","set","set","set","set","set","set","set"};
       //int[] Image = {R.drawable.add,R.drawable.add,R.drawable.add,R.drawable.add,R.drawable.add,R.drawable.add,R.drawable.add,R.drawable.add,};
 
@@ -72,52 +72,9 @@ public class Home extends AppCompatActivity {
         Tags = (TextView) findViewById(R.id.Tags) ;
         val = (TextView) findViewById(R.id.pulsesval);
         createNotificationChannel();
-
         getdatauser();
-        mDatabase2 = FirebaseDatabase.getInstance().getReference("Users").child("kusrc");
-        mDatabase2.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                ArrayList<String> names = new ArrayList<String>();
-                ArrayList<String> images = new ArrayList<String>();
-                ArrayList<String> pulsevals = new ArrayList<String>();
-                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
-
-                    UsersGetter user = snapshot.getValue(UsersGetter.class);
-                    //Log.d("mytag",user.getName().toString());
-                    if(!snapshot.getKey().equals(UID)){
-                        names.add(user.getName() );
-                        images.add(user.getPicUrl());
-                        pulsevals.add(user.getPulseshow());
-                        if(Integer.parseInt(user.getPulseshow())<60 && Integer.parseInt(user.getPulseshow())!=-1){
-                            showNotification1(user.getName());
-                            Log.d("gun","Alert low");
-
-                        }else if(Integer.parseInt(user.getPulseshow())>110 && Integer.parseInt(user.getPulseshow())!=-1){
-                            showNotification2(user.getName());
-                        }
-                    }
-
-
-                }
-                MyAdapter adapter = new MyAdapter(Home.this, names, images,pulsevals);
-                listView.setAdapter(adapter);
-                listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                    @Override
-                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                        Toast.makeText(Home.this,String.valueOf(position),Toast.LENGTH_SHORT).show();
-                    }
-                });
-
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-        });
-
-
+        getdatafriend();
+        
         editprofile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -182,8 +139,9 @@ public class Home extends AppCompatActivity {
             //imageView.setImageResource(images.get(position));
             Picasso.get()
                     .load(images.get(position))
-//                    .resize(50, 50)
+                    .resize(200, 200)
 //                    .centerCrop()
+                    .centerCrop()
                     .into(imageView);
             textView.setText("  "+names.get(position));
             if(pulsevals.get(position).equals("-1")){
@@ -195,6 +153,7 @@ public class Home extends AppCompatActivity {
             return row;
         }
     }
+
     private void getdatauser(){
         mDatabase = FirebaseDatabase.getInstance().getReference("Users").child("kusrc").child(FirebaseAuth.getInstance().getCurrentUser().getUid());
 //        if(mDatabase == null){
@@ -281,6 +240,67 @@ public class Home extends AppCompatActivity {
         NotificationManager notificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
         notificationManager.notify(NOTIFICATION_ID, notification);
 
+    }
+
+
+
+    private void getdatafriend(){
+        mDatabase3 = FirebaseDatabase.getInstance().getReference("Users").child("kusrc").child(FirebaseAuth.getInstance().getCurrentUser().getUid());
+        mDatabase2 = FirebaseDatabase.getInstance().getReference("Users").child("kusrc");
+        mDatabase2.addValueEventListener(new ValueEventListener() {
+            ArrayList<String> names = new ArrayList<String>();
+            ArrayList<String> images = new ArrayList<String>();
+            ArrayList<String> pulsevals = new ArrayList<String>();
+            ArrayList<String> uidlist = new ArrayList<String>();
+            @Override
+            public void onDataChange(@NonNull final DataSnapshot dataSnapshot) {
+                names.clear();
+                images.clear();
+                pulsevals.clear();
+//                ArrayList<String> names = new ArrayList<String>();
+//                ArrayList<String> images = new ArrayList<String>();
+//                ArrayList<String> pulsevals = new ArrayList<String>();
+                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+
+                    UsersGetter user = snapshot.getValue(UsersGetter.class);
+                    //Log.d("mytag",user.getName().toString());
+                    if(!snapshot.getKey().equals(UID)){
+                        uidlist.add(snapshot.getKey());
+                        names.add(user.getName() );
+                        images.add(user.getPicUrl());
+                        pulsevals.add(user.getPulseshow());
+                        if(Integer.parseInt(user.getPulseshow())<60 && Integer.parseInt(user.getPulseshow())!=-1){
+                            showNotification1(user.getName());
+                            Log.d("gun","Alert low");
+
+                        }else if(Integer.parseInt(user.getPulseshow())>110 && Integer.parseInt(user.getPulseshow())!=-1){
+                            showNotification2(user.getName());
+                        }
+                    }
+                }
+                MyAdapter adapter = new MyAdapter(Home.this, names, images,pulsevals);
+                listView.setAdapter(adapter);
+                listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+                        if(String.valueOf(uidlist.get(position)).equals("vM5wS1skqxdIqJlVApSMJyAk8Au1")){
+                            Intent homeIntent = new Intent(Home.this,MapsActivity.class);
+                            startActivity(homeIntent);
+                        }else{
+                            Toast.makeText(Home.this,String.valueOf("ไม่มีอุปกรณ์"),Toast.LENGTH_SHORT).show();
+                        }
+
+                    }
+                });
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
     }
 
 

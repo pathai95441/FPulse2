@@ -8,19 +8,27 @@ import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.content.ContextCompat;
-import android.widget.Toast;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
-public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
+public class MapsActivity<uid> extends FragmentActivity implements OnMapReadyCallback {
 
     private GoogleMap mMap;
+    private DatabaseReference mDatabase2;
+    private String uid="vM5wS1skqxdIqJlVApSMJyAk8Au1";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,6 +38,30 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
+        mDatabase2 = FirebaseDatabase.getInstance().getReference("Users").child("kusrc").child(uid);
+        mDatabase2.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+                UsersGetter user = dataSnapshot.getValue(UsersGetter.class);
+                //Toast.makeText(MapsActivity.this, user.getLatijude().toString(), Toast.LENGTH_LONG).show();
+                LatLng position = new LatLng(Double.parseDouble(user.getLatijude()),Double.parseDouble(user.getLongtijude()));
+                //LatLng position = new LatLng((-33.852),151.211);
+
+                mMap.addMarker(new MarkerOptions().position(position).title(user.getName()));
+                mMap.moveCamera(CameraUpdateFactory.newLatLng((position)));
+
+                //mMap.addMarker(new MarkerOptions().position(new LatLng(Long.parseLong(user.getLatijude()),Long.parseLong(user.getLatijude()))).title(user.getName().toString()));
+            }
+
+
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
     }
 
 
@@ -77,8 +109,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             double latitude = location.getLatitude();
             double longitude = location.getLongitude();
             String msg = "New Latitude: " + latitude + "New Longitude: " + longitude;
-            Toast.makeText(MapsActivity.this, msg, Toast.LENGTH_LONG).show();
-            mMap.moveCamera(CameraUpdateFactory.newLatLng(new LatLng(latitude,longitude)));
+           // Toast.makeText(MapsActivity.this, msg, Toast.LENGTH_LONG).show();
+
         }
 
         @Override

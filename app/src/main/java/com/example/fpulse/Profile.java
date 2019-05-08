@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -16,9 +17,13 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.jjoe64.graphview.GraphView;
+import com.jjoe64.graphview.series.DataPoint;
 import com.jjoe64.graphview.series.LineGraphSeries;
 import com.squareup.picasso.Picasso;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.concurrent.ScheduledExecutorService;
 
 //import com.google.android.gms.maps.MapView;
@@ -29,6 +34,10 @@ public class Profile extends AppCompatActivity {
     Button link;
     Button log;
     ImageView imagepro;
+
+    DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+    long cal = Calendar.getInstance().getTimeInMillis();
+
 
     GraphView graphView;
     LineGraphSeries series;
@@ -54,7 +63,7 @@ public class Profile extends AppCompatActivity {
         graphView.addSeries(series);
         mDatabase = FirebaseDatabase.getInstance().getReference("Users").child("kusrc").child(FirebaseAuth.getInstance().getCurrentUser().getUid());
 
-
+        Toast.makeText(Profile.this, dateFormat.format(cal), Toast.LENGTH_LONG).show();
 
         link.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -70,67 +79,28 @@ public class Profile extends AppCompatActivity {
                 startActivity(homeIntent);
             }
         });
+        mDatabase2 = FirebaseDatabase.getInstance().getReference("Logs").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child(dateFormat.format(cal).toString());
+        mDatabase2.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                DataPoint[] dp=new DataPoint[(int) dataSnapshot.getChildrenCount()];
+                int index=0;
+                for(DataSnapshot mydatasnapshot : dataSnapshot.getChildren()){
+                    UsersGetter user = mydatasnapshot.getValue(UsersGetter.class);
+                    dp[index] = new DataPoint(index,Integer.parseInt(user.getPulseValue().toString()));
+                    index++;
+                }
+                series.resetData(dp);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
         onStart();
 
-        //Bundle mapviewbundle = null;
-       // if(savedInstanceState != null){
-           // mapviewbundle =savedInstanceState.getBundle(Keymap);
 
-      //  }
-        //mapView = (MapView) findViewById(R.id.mapViewa);
-        //mapView.onCreate(mapviewbundle);
-
-        //mapView.getMapAsync((OnMapReadyCallback) this);
-
-//        pulsetxt = (TextView) findViewById(R.id.pulsetxt);
-//        scheduleTaskExecutor = Executors.newScheduledThreadPool(5);
-//
-//        //Schedule a task to run every 5 seconds (or however long you want)
-//        scheduleTaskExecutor.scheduleAtFixedRate(new Runnable() {
-//            @Override
-//            public void run() {
-//                // Do stuff here!
-//                runOnUiThread(new Runnable() {
-//                    @Override
-//                    public void run() {
-//                        // Do stuff to update UI here!
-//                        StringRequest request = new StringRequest(url, new Response.Listener<String>() {
-//                            @Override
-//                            public void onResponse(String string) {
-//                                //parseJsonData(string);
-//                                try {
-//                                    //code
-//                                    JSONObject object = new JSONObject(string);
-//                                    String myRequiredData = object.getString("livejson");
-//                                    JSONArray array = new JSONArray(myRequiredData);
-//                                    //Log.d("mosTag",array.toString());
-//                                    JSONObject obj = new JSONObject(array.get(0).toString());
-//                                    Log.d("mosTag",obj.getString("slot0"));
-//                                    pulsetxt.setText(obj.getString("slot0"));
-//
-//                                } catch (JSONException e) {
-//                                    e.printStackTrace();
-//                                }
-//                            }
-//                        }, new Response.ErrorListener() {
-//                            @Override
-//                            public void onErrorResponse(VolleyError volleyError) {
-//                                Toast.makeText(getApplicationContext(), volleyError.toString(), Toast.LENGTH_SHORT).show();
-//                                //dialog.dismiss();
-//                            }
-//                        });
-//                        RequestQueue rQueue = Volley.newRequestQueue(Profile.this);
-//                        rQueue.add(request);
-//
-//                    }
-//                });
-//
-//            }
-//        }, 0, 1, TimeUnit.SECONDS); // or .MINUTES, .HOURS etc.
-
-
-
-        //
     }
     private void getdatauser(){
         mDatabase = FirebaseDatabase.getInstance().getReference("Users").child("kusrc").child(FirebaseAuth.getInstance().getCurrentUser().getUid());
