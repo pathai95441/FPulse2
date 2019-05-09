@@ -11,6 +11,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.content.ContextCompat;
+import android.widget.Toast;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -47,9 +48,13 @@ public class MapsActivity<uid> extends FragmentActivity implements OnMapReadyCal
                 //Toast.makeText(MapsActivity.this, user.getLatijude().toString(), Toast.LENGTH_LONG).show();
                 LatLng position = new LatLng(Double.parseDouble(user.getLatijude()),Double.parseDouble(user.getLongtijude()));
                 //LatLng position = new LatLng((-33.852),151.211);
+                if(Double.parseDouble(user.getLatijude())==0){
+                    Toast.makeText(MapsActivity.this, "Cannot receive Gps From the Device", Toast.LENGTH_LONG).show();
+                }else{
+                    mMap.addMarker(new MarkerOptions().position(position).title(user.getName()));
+                    mMap.moveCamera(CameraUpdateFactory.newLatLng((position)));
+                }
 
-                mMap.addMarker(new MarkerOptions().position(position).title(user.getName()));
-                mMap.moveCamera(CameraUpdateFactory.newLatLng((position)));
 
                 //mMap.addMarker(new MarkerOptions().position(new LatLng(Long.parseLong(user.getLatijude()),Long.parseLong(user.getLatijude()))).title(user.getName().toString()));
             }

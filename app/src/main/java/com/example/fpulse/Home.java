@@ -74,7 +74,7 @@ public class Home extends AppCompatActivity {
         createNotificationChannel();
         getdatauser();
         getdatafriend();
-        
+
         editprofile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

@@ -9,74 +9,40 @@
 
     <com.jjoe64.graphview.GraphView
         android:id="@+id/graph1"
-        android:layout_width="0dp"
-        android:layout_height="383dp"
-        android:layout_marginStart="51dp"
-        android:layout_marginLeft="51dp"
-        android:layout_marginTop="49dp"
-        android:layout_marginEnd="51dp"
-        android:layout_marginRight="51dp"
+        android:layout_width="376dp"
+        android:layout_height="326dp"
+        android:layout_marginStart="14dp"
+        android:layout_marginEnd="14dp"
+        android:layout_marginBottom="100dp"
+        app:layout_constraintBottom_toTopOf="@+id/dateBtn"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/dateText" />
+
+    <Button
+        android:id="@+id/dateBtn"
+        android:layout_width="113dp"
+        android:layout_height="83dp"
+        android:layout_marginBottom="32dp"
+        android:background="@drawable/custom_button"
+        android:text="@string/date"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/graph1" />
+
+    <TextView
+        android:id="@+id/dateText"
+        android:layout_width="254dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="61dp"
+        android:layout_marginBottom="57dp"
+        android:text="Date"
+        android:textAlignment="center"
+        android:textSize="30sp"
+        app:layout_constraintBottom_toTopOf="@+id/graph1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <EditText
-        android:id="@+id/DeditText"
-        android:layout_width="78dp"
-        android:layout_height="41dp"
-        android:layout_marginStart="40dp"
-        android:layout_marginTop="36dp"
-        android:layout_marginBottom="8dp"
-        android:ems="10"
-        android:hint="D"
-        android:inputType="textPersonName"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/graph1" />
-
-    <EditText
-        android:id="@+id/MeditText2"
-        android:layout_width="77dp"
-        android:layout_height="43dp"
-        android:layout_marginStart="48dp"
-        android:layout_marginTop="28dp"
-        android:layout_marginBottom="8dp"
-        android:ems="10"
-        android:hint="M"
-        android:inputType="textPersonName"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/DeditText"
-        app:layout_constraintTop_toBottomOf="@+id/graph1"
-        app:layout_constraintVertical_bias="0.522" />
-
-    <EditText
-        android:id="@+id/YeditText5"
-        android:layout_width="95dp"
-        android:layout_height="43dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="36dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="8dp"
-        android:ems="10"
-        android:hint="Y"
-        android:inputType="textPersonName"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/MeditText2"
-        app:layout_constraintTop_toBottomOf="@+id/graph1" />
-
-    <Button
-        android:id="@+id/OKbtn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:background="@drawable/custom_button"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="8dp"
-        android:text="OK"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/MeditText2" />
 </android.support.constraint.ConstraintLayout>
